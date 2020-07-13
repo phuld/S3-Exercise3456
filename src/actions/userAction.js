@@ -1,11 +1,15 @@
+import * as actions from './actionTypes'
+
 export const registerUser = (userData) => {
-    return dispatch => {
+    return {
+        type: actions.REGISTER_USER,
+        userData
     }
 }
 
 export const loginUser = (userData) => {
     return {
-        type: 'LOGIN',
+        type: actions.LOGIN_USER,
         userData
     }
 }

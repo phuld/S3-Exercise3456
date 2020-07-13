@@ -1,5 +1,6 @@
 import { combineReducers, createStore, compose } from 'redux'
 import userReducer from '../reducers/userReducer'
+import uiReducer from '../reducers/uiReducer'
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
@@ -9,7 +10,8 @@ const persistConfig = {
    };
 
 const reducers = combineReducers({
-    user: userReducer
+    user: userReducer, 
+    ui: uiReducer
 })
 
 const pReducer = persistReducer(persistConfig, reducers)

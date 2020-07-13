@@ -99,7 +99,8 @@ const Register = (props) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onRegisterUser: (data) => dispatch(registerUser(data))
+        onRegisterUser: (data) => dispatch(registerUser(data)),
+        // onSendMessage: () => dispatch()
     }
 }
 

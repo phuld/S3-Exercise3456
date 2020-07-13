@@ -1,1 +1,0 @@
-export const REGISTER_SUCCESS = "Register successfully. Please login to continue."

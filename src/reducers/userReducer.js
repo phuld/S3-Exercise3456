@@ -1,3 +1,5 @@
+import * as actions from '../actions/actionTypes'
+
 const initialState = {
     isLogin: false,
     users: []
@@ -5,7 +7,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'REGISTER':
+        case actions.REGISTER_USER:
             return {
                 ...state,
                 users:[
@@ -13,7 +15,7 @@ const reducer = (state = initialState, action) => {
                     action.userData
                 ]
             }
-        case 'LOGIN':
+        case actions.LOGIN_USER:
             return {
                 ...state,
                 isLogin: true
