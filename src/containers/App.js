@@ -11,7 +11,7 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Page404 from '../pages/Page404';
 import Dashboard from '../pages/Dashboard';
-import PrivateRoute from '../utils/PrivateRoute';
+// import PrivateRoute from '../utils/PrivateRoute';
 // import Message from '../components/UI/Message';
 
 function App() {
