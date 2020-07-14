@@ -13,3 +13,23 @@ export const loginUser = (userData) => {
         userData
     }
 }
+
+export const logoutUser = () => {
+    return {
+        type: actions.LOGOUT_USER
+    }
+}
+
+export const deleteUser = (userId) => {
+    return {
+        type: actions.DELETE_USER,
+        userId
+    }
+}
+
+export const editUser = (userData) => {
+    return {
+        type: actions.EDIT_USER,
+        userData
+    }
+}

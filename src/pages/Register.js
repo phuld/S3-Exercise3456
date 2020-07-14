@@ -22,6 +22,18 @@ const Register = (props) => {
                 isValid: false,
                 errorMessage: ''
             },
+            email: {
+                name: "email",
+                type: 'text',
+                value: '',
+                placeholder: 'email',
+                validation: {
+                    required: true, 
+                    isEmail: true
+                },
+                isValid: false,
+                errorMessage: ''
+            },
             password: {
                 name: 'password',
                 type: 'password',
@@ -82,7 +94,9 @@ const Register = (props) => {
             })
         } else {
             const userData = {}
+            userData.id = new Date().getTime().toString()
             userData.username = initialRegister.inputs.username.value
+            userData.email = initialRegister.inputs.email.value
             userData.password = initialRegister.inputs.password.value
             props.onRegisterUser(userData)
             props.history.push('/login')
@@ -99,8 +113,7 @@ const Register = (props) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onRegisterUser: (data) => dispatch(registerUser(data)),
-        // onSendMessage: () => dispatch()
+        onRegisterUser: (data) => dispatch(registerUser(data))
     }
 }
 

@@ -46,7 +46,7 @@ export const Button = styled.button`
     background-color: #349e34;
     width: 100%;
     border: none;
-    padding: 1.2rem;
+    padding: 0.8rem;
     text-transform: uppercase;
     color: white;
     font-size: 1rem;

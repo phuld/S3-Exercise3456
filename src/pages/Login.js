@@ -3,9 +3,10 @@ import Form from '../components/Form/Form';
 import { checkValidation } from '../utils/validator';
 import { connect } from 'react-redux'
 import { loginUser } from '../actions/userAction'
-import { withRouter } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 const Login = (props) => {
+    const history = useHistory()
     const [initialLogin, setInitialLogin] = useState({
         formType: 'login',
         name: 'login',
@@ -52,7 +53,7 @@ const Login = (props) => {
         setInitialLogin(updateForm)
     }
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         const initialInputs = initialLogin.inputs
         let isValidForm = true
@@ -72,8 +73,14 @@ const Login = (props) => {
                 username: initialLogin.inputs.username.value,
                 password: initialLogin.inputs.password.value
             }
-            await props.onLogin(userData);
-            await props.isLogin ? props.history.push('/dashboard') : alert('Login fail')
+            const isExistUser = props.users.filter(item => item.username === userData.username && item.password === userData.password)
+            if (isExistUser.length > 0){
+                props.onLogin(userData)
+                // props.history.push('/dashboard/manage-users')
+                history.push('/dashboard/manage-users')
+            }else {
+                alert('Login fail, please check again.')
+            }
         }
     }
     return (
@@ -86,7 +93,7 @@ const Login = (props) => {
 
 const mapStateToProps = state => {
     return {
-        isLogin: state.user.isLogin
+        users: state.user.users
     }
 }
 
@@ -96,4 +103,4 @@ const mapDispatchtoProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchtoProps)(withRouter(Login))
+export default connect(mapStateToProps, mapDispatchtoProps)(Login)
