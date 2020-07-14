@@ -25,10 +25,10 @@ function App() {
                 <Route exact path="/">
                     <Redirect to="/login" />
                 </Route>
-                <Route path="/dashboard">
+                <Route exact path="/dashboard">
                     <Dashboard/>
                 </Route>
-                <Route path="*">
+                <Route exact path="*">
                     <Page404/>
                 </Route>
             </Switch>

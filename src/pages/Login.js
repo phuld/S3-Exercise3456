@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import Form from '../components/Form/Form';
 import { checkValidation } from '../utils/validator';
 import { connect } from 'react-redux'
+import { loginUser } from '../actions/userAction'
+import { withRouter } from 'react-router-dom'
 
-const Login = () => {
+const Login = (props) => {
     const [initialLogin, setInitialLogin] = useState({
         formType: 'login',
         name: 'login',
@@ -50,7 +52,7 @@ const Login = () => {
         setInitialLogin(updateForm)
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const initialInputs = initialLogin.inputs
         let isValidForm = true
@@ -66,7 +68,12 @@ const Login = () => {
                 inputs: initialInputs
             })
         } else {
-            alert('tada')
+            const userData = {
+                username: initialLogin.inputs.username.value,
+                password: initialLogin.inputs.password.value
+            }
+            await props.onLogin(userData);
+            await props.isLogin ? props.history.push('/dashboard') : alert('Login fail')
         }
     }
     return (
@@ -77,10 +84,16 @@ const Login = () => {
     )
 }
 
-const mapDispatchtoProps = dispatch => {
+const mapStateToProps = state => {
     return {
-        onLogin: () => dispatch()
+        isLogin: state.user.isLogin
     }
 }
 
-export default connect(null, mapDispatchtoProps)(Login)
+const mapDispatchtoProps = dispatch => {
+    return {
+        onLogin: (userData) => dispatch(loginUser(userData))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchtoProps)(withRouter(Login))

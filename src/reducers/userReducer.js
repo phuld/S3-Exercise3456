@@ -10,15 +10,16 @@ const reducer = (state = initialState, action) => {
         case actions.REGISTER_USER:
             return {
                 ...state,
-                users:[
+                users: [
                     ...state.users,
                     action.userData
                 ]
             }
         case actions.LOGIN_USER:
+            const isExist = state.users.filter(item => item.username === action.userData.username)
             return {
                 ...state,
-                isLogin: true
+                isLogin: isExist.length > 0 ? true : false
             }
         default:
             return state;
