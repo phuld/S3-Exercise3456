@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout, Space, Table } from 'antd'
+import { Layout, Space, Table, Input } from 'antd'
 import 'antd/dist/antd.css';
 import { connect } from 'react-redux'
 import AddUser from '../components/Actions/AddUser';
@@ -10,11 +10,21 @@ import EditUser from '../components/Actions/EditUser';
 const { Content } = Layout
 
 const ContentUsers = (props) => {
+
+    const getColumnSeachProps = () => ({
+        filterDropdown: () => (
+            <Input
+                placeholder="Search data"
+                />
+        )
+    })
+
     const columns = [
         {
             title: 'Username',
             dataIndex: 'username',
-            key: 'username'
+            key: 'username',
+            ...getColumnSeachProps()
         },
         {
             title: 'Email',
