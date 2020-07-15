@@ -12,6 +12,8 @@ const AddUser = (props) => {
     }
 
     const handleSubmit = () => {
+        // if(!username || !email || !password) {
+        // }
         const newUser = {
             id: new Date().getTime().toString(),
             username,

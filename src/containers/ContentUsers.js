@@ -7,6 +7,7 @@ import AddUser from '../components/Actions/AddUser';
 import { registerUser, deleteUser, editUser } from '../actions/userAction';
 import DeleteUser from '../components/Actions/DeleteUser';
 import EditUser from '../components/Actions/EditUser';
+import ViewUser from '../components/Actions/ViewUser';
 
 const { Content } = Layout
 
@@ -86,6 +87,7 @@ const ContentUsers = (props) => {
             key: 'action',
             render: (text, record) => (
                 <Space size="middle">
+                    <ViewUser record={record}/>
                     <EditUser record={record} onEditUser={props.onEditUser} />
                     <DeleteUser onDeleteUser={(id) => props.onDeleteUser(record.id)} />
                 </Space>
